@@ -1,0 +1,30 @@
+.totalActivity_container {
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  margin: 0.5rem 0.2rem 0.5rem 0.5rem ;
+  background-color: white;
+  width: 97%;
+
+  .totalActivity_heading {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+  }
+  .activity_row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .activity {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid lightgray;
+      border-radius: 5px;
+      width: 28%;
+      margin: 0.25rem;
+      padding: 0.5rem;
+      .activity_name {
+      }
+      .activity_value {
+      }
+    }
+  }
+}

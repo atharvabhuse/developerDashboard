@@ -1,0 +1,19 @@
+.day_wise_activity_container {
+  display: flex;
+  flex-direction: row;
+  margin: 0.5rem;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+  background-color: white;
+
+  .day_wise_activity_date {
+  }
+  .day_wise_activity_count_label {
+    .day_wise_activity_count {
+    }
+    .day_wise_activity_label {
+      font-size: 0.5rem;
+      padding: 0rem 0.7rem 0.1rem 0.7rem;
+    }
+  }
+}

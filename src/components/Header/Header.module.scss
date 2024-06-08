@@ -1,0 +1,11 @@
+.header_container{
+    background-color: rgb(215, 235, 253);
+    display: flex;
+    justify-content: flex-start;
+    padding: 1rem 1rem;
+
+    .header_text{
+        font-size: 2rem;
+        font-weight: 600;
+    }
+}
