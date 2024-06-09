@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import styles from './ActiveDays.module.scss'
+import { useTheme } from "../../services/queries/hooks/useTheme";
 
 const ActiveDays = ({activeDays, burnout}: any) => {
     const isBurnOutFn = () =>{
@@ -9,13 +10,15 @@ const ActiveDays = ({activeDays, burnout}: any) => {
             return 'Yes'
         }
     }
+    const theme = useTheme();
+
   return (
     <div className={styles.activedays_container}>
-      <div className={styles.activedays}>
+      <div className={styles.activedays} style={theme.style}>
         <div className={styles.activedays_text}>Active Days</div>
         <div className={styles.activedays_value}>{activeDays ?? '-'}</div>
       </div>
-      <div className={styles.burnout}>
+      <div className={styles.burnout} style={theme.style}>
         <div className={styles.burnout_text}>Burnout</div>
         <div className={styles.burnout_value}>{isBurnOutFn() ?? '-'}</div>
       </div>

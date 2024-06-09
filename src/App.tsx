@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import "./App.css";
 import Employees from "./components/Employees/Employees";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -16,13 +16,12 @@ import Piechart from "./components/Piechart/Piechart";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import SelectEmployeeBanner from "./components/SelectEmployeeBanner/SelectEmployeeBanner";
+import ThemeContextProvider from "./Context/ThemeContextProvider";
+import { useTheme } from "./services/queries/hooks/useTheme";
+import ThemeContext from "./Context/ThemeContext";
 
 function App() {
   const { data } = useGetEmployeesData();
-  // {
-  //   console.log("data", data);
-  // }
-
   const initialState: EmployeesState | null = null;
   const [state, dispatch] = useReducer(employeesReducer, initialState);
 
@@ -75,18 +74,24 @@ function App() {
   );
   const [isSelectedEmployee, setIsSelectedEmployee] = useState<any>(false);
   useEffect(() => {
-    console.log('useeffect')
-
-    if (state?.currentEmployeeDetails && Object.keys(state.currentEmployeeDetails).length > 0) {
+    if (
+      state?.currentEmployeeDetails &&
+      Object.keys(state.currentEmployeeDetails).length > 0
+    ) {
       setIsSelectedEmployee(true);
     }
   }, [state?.currentEmployeeDetails]);
-  console.log("state", state,'isSelectedEmployee',isSelectedEmployee);
+  const theme = useTheme();
+  useEffect(() => {
+    console.log("theme", theme);
+  }, [theme]);
+  const receiver = useContext(ThemeContext);
+  console.log(receiver.theme);
 
   return (
     <div className="App">
       <Header />
-      <div className="App_content">
+      <div className="App_content" style={theme.appContent}>
         <div className="App_left">
           <Employees list={allEmployees} employeeClicked={employeeClickedFn} />
         </div>
@@ -99,10 +104,11 @@ function App() {
           </div>
         )}
 
+        {console.log("x", theme.mode)}
         {isSelectedEmployee && (
           <div className="App_right">
             <LineChart labels={lineChartLabels} data={lineChartData} />
-            <div className="daywise_activity">
+            <div className="daywise_activity" style={theme.style}>
               {dayWiseActivity?.map((data: any) => (
                 <DayWiseActivity dayWiseActivity={data} headings={headings} />
               ))}
