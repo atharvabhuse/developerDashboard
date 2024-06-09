@@ -1,17 +1,18 @@
-import React, { useReducer, useState } from "react";
-import {
-  EmployeesReducerActionTypes,
-  employeesReducer,
-} from "../../reducers/employeesReducer";
+import React, { useState } from "react";
 import styles from "./Employees.module.scss";
 import { useTheme } from "../../services/queries/hooks/useTheme";
 
+interface EmployeesInterface {
+  list: string[];
+  employeeClicked: (arg: string) => void;
+}
+
 const Employees: React.FC<{
-  list: any[];
-  employeeClicked: (arg: any) => void;
-}> = React.memo(({ list, employeeClicked }: any) => {
+  list: string[];
+  employeeClicked: (arg: string) => void;
+}> = React.memo(({ list, employeeClicked }: EmployeesInterface) => {
   const [selected, setSelected] = useState<null | number>(null);
-  const employeeClickHandler = (data: any, index: number) => {
+  const employeeClickHandler = (data: string, index: number) => {
     setSelected(index);
     employeeClicked(data);
   };
@@ -20,8 +21,9 @@ const Employees: React.FC<{
   return (
     <div className={styles.employees_container} style={theme.drawerStyle}>
       <div className={styles.employees_heading}>Developers List</div>
-      {list?.map((data: any, index: number) => (
+      {list?.map((data: string, index: number) => (
         <div
+          key={index}
           className={
             index === selected ? styles.employees_selected : styles.employees
           }

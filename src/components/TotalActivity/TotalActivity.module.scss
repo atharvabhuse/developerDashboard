@@ -1,7 +1,7 @@
 .totalActivity_container {
   border: 1px solid lightgray;
   border-radius: 10px;
-  margin: 0.5rem 0.2rem 0.5rem 0.5rem ;
+  margin: 0.5rem 0.2rem 0.5rem 0.5rem;
   background-color: white;
   width: 97%;
 
@@ -31,37 +31,37 @@
 }
 
 @media screen and (max-width: 600px) {
-    .totalActivity_container {
+  .totalActivity_container {
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    margin: 0.5rem 0.2rem 0.5rem 0.5rem;
+    background-color: white;
+    width: 95.5%;
+
+    .totalActivity_heading {
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.5rem;
+    }
+    .activity_row {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      .activity {
+        display: flex;
+        flex-direction: column;
         border: 1px solid lightgray;
-        border-radius: 10px;
-        margin: 0.5rem 0.2rem 0.5rem 0.5rem ;
-        background-color: white;
-        width: 95.5%;
-      
-        .totalActivity_heading {
+        border-radius: 5px;
+        width: 26%;
+        margin: 0.25rem;
+        padding: 0.5rem;
+        .activity_name {
           font-size: 1rem;
-          font-weight: 600;
-          padding: 0.5rem;
         }
-        .activity_row {
-          display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
-          .activity {
-            display: flex;
-            flex-direction: column;
-            border: 1px solid lightgray;
-            border-radius: 5px;
-            width: 26%;
-            margin: 0.25rem;
-            padding: 0.5rem;
-            .activity_name {
-                font-size: 1rem;
-            }
-            .activity_value {
-                font-size: 1rem;
-            }
-          }
+        .activity_value {
+          font-size: 1rem;
         }
       }
+    }
+  }
 }

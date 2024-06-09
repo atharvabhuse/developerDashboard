@@ -3,47 +3,57 @@
   display: flex;
   flex-direction: column;
 }
-.App_content{
+
+.App_content {
   display: flex;
   flex-direction: row;
 }
-.App_left{
+
+.App_left {
   width: 20%;
   display: flex;
   background-color: aliceblue;
 }
-.App_middle{
+
+.App_middle {
   width: 38%;
   display: flex;
   flex-direction: column;
 }
-.App_right{
+
+.App_right {
   width: 40%;
-  /* display: flex; */
 }
-.daywise_activity{
+
+.daywise_activity {
   border: 1px solid lightgray;
   border-radius: 10px;
   margin: 0.5rem;
   width: 100%;
 }
+
 @media screen and (max-width: 600px) {
-  .App_left{
+  .App_left {
     width: 100%;
+    overflow: hidden;
   }
-  .App_content{
+
+  .App_content {
     display: flex;
     flex-direction: column;
   }
-  .App_middle{
+
+  .App_middle {
     width: 100%;
     display: flex;
     flex-direction: column;
   }
-  .App_right{
+
+  .App_right {
     width: 100%;
   }
-  .daywise_activity{
+
+  .daywise_activity {
     border: 1px solid lightgray;
     border-radius: 10px;
     margin: 0.5rem;
@@ -81,6 +91,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

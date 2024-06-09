@@ -1,4 +1,4 @@
-.employees_container{
+.employees_container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -6,18 +6,18 @@
   text-align: start;
   height: 100%;
   width: 100%;
-  .employees_heading{
+  .employees_heading {
     padding: 1rem 1rem 1rem 1rem;
     font-size: 1.5rem;
     font-weight: 600;
   }
-  .employees{
+  .employees {
     padding: 0.5rem 1rem;
     font-size: 1rem;
     width: 99%;
     cursor: pointer;
   }
-  .employees_selected{
+  .employees_selected {
     padding: 0.5rem 1rem;
     font-size: 1rem;
     width: 80%;
@@ -28,13 +28,13 @@
   }
 }
 @media screen and (max-width: 600px) {
-    .employees_container{
-        .employees_heading{
-          font-size: 1rem;
-        }
-        .employees{
-        }
-        .employees_selected{
-        }
-      }
+  .employees_container {
+    .employees_heading {
+      font-size: 1rem;
+    }
+    .employees {
+    }
+    .employees_selected {
+    }
+  }
 }

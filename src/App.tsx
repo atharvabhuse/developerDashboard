@@ -1,10 +1,13 @@
-import React, { useContext, useEffect, useReducer, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import "./App.css";
 import Employees from "./components/Employees/Employees";
-import { QueryClient, QueryClientProvider } from "react-query";
 import {
+  ChildrenInterface,
+  DayWiseActivityInterface,
+  EmployeeDataInterface,
   EmployeesReducerActionTypes,
   EmployeesState,
+  TotalActivityInterface,
   employeesReducer,
 } from "./reducers/employeesReducer";
 import { useGetEmployeesData } from "./services/queries/hooks/useGetEmployeesData";
@@ -16,16 +19,13 @@ import Piechart from "./components/Piechart/Piechart";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import SelectEmployeeBanner from "./components/SelectEmployeeBanner/SelectEmployeeBanner";
-import ThemeContextProvider from "./Context/ThemeContextProvider";
 import { useTheme } from "./services/queries/hooks/useTheme";
-import ThemeContext from "./Context/ThemeContext";
 
 function App() {
   const { data } = useGetEmployeesData();
   const initialState: EmployeesState | null = null;
   const [state, dispatch] = useReducer(employeesReducer, initialState);
 
-  const [headings, setHeadings] = useState([]);
   useEffect(() => {
     if (data) {
       dispatch({
@@ -33,15 +33,11 @@ function App() {
         payload: data?.data,
       });
     }
-    const headingsTemp = data?.data?.AuthorWorklog?.activityMeta?.map(
-      (val: any) => val.label
-    );
-    setHeadings(headingsTemp);
   }, [data]);
 
-  const employeeClickedFn = (employee: any) => {
+  const employeeClickedFn = (employee: string) => {
     const employeeData = data?.data.AuthorWorklog.rows.find(
-      (data: any) => data.name === employee
+      (data: EmployeeDataInterface) => data.name === employee
     );
     dispatch({
       type: EmployeesReducerActionTypes.EMPLOYEE_CLICKED,
@@ -54,25 +50,27 @@ function App() {
   const totalActivity = state?.currentEmployeeDetails.totalActivity;
   const dayWiseActivity = state?.currentEmployeeDetails.dayWiseActivity;
 
-  const lineChartData: any =
-    state?.currentEmployeeDetails?.dayWiseActivity?.map((data: any) =>
-      data?.items?.children?.reduce(
-        (a: any, c: any) => a + parseInt(c?.count),
-        0
-      )
+  const lineChartData: number[] =
+    state?.currentEmployeeDetails?.dayWiseActivity?.map(
+      (data: DayWiseActivityInterface | any) =>
+        data?.items?.children?.reduce(
+          (a: number, c: ChildrenInterface) => a + parseInt(c?.count),
+          0
+        )
     );
+
   const lineChartLabels: any =
     state?.currentEmployeeDetails?.dayWiseActivity?.map(
-      (data: any) => data?.date
+      (data: DayWiseActivityInterface) => data?.date
     );
 
   const pieChartData = state?.currentEmployeeDetails?.totalActivity?.map(
-    (data: any) => data.value
+    (data: TotalActivityInterface) => data.value
   );
   const pieChartLabels = state?.currentEmployeeDetails?.totalActivity?.map(
-    (data: any) => data.name
+    (data: TotalActivityInterface) => data.name
   );
-  const [isSelectedEmployee, setIsSelectedEmployee] = useState<any>(false);
+  const [isSelectedEmployee, setIsSelectedEmployee] = useState<boolean>(false);
   useEffect(() => {
     if (
       state?.currentEmployeeDetails &&
@@ -82,11 +80,6 @@ function App() {
     }
   }, [state?.currentEmployeeDetails]);
   const theme = useTheme();
-  useEffect(() => {
-    console.log("theme", theme);
-  }, [theme]);
-  const receiver = useContext(ThemeContext);
-  console.log(receiver.theme);
 
   return (
     <div className="App">
@@ -104,13 +97,12 @@ function App() {
           </div>
         )}
 
-        {console.log("x", theme.mode)}
         {isSelectedEmployee && (
           <div className="App_right">
             <LineChart labels={lineChartLabels} data={lineChartData} />
             <div className="daywise_activity" style={theme.style}>
               {dayWiseActivity?.map((data: any) => (
-                <DayWiseActivity dayWiseActivity={data} headings={headings} />
+                <DayWiseActivity dayWiseActivity={data} />
               ))}
             </div>
           </div>

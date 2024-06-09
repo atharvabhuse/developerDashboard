@@ -11,23 +11,59 @@ export enum EmployeesReducerActionTypes {
   EMPLOYEE_CLICKED = "EMPLOYEE_CLICKED",
 }
 
+export interface ChildrenInterface {
+  count: string;
+  fillColor: string;
+  label: string;
+}
+export interface DayWiseActivityInterface {
+  date: string;
+  items: ChildrenInterface[];
+}
+export interface TotalActivityInterface {
+  name: string;
+  value: string;
+}
+export interface EmployeeDataInterface {
+  activeDays: {
+    days: number;
+    insight: string[];
+    isBurnOut: boolean;
+  };
+  dayWiseActivity: DayWiseActivityInterface[];
+  name: string;
+  totalActivity: TotalActivityInterface[];
+}
+
+export interface AllEmployeeInterface {
+  AuthorWorklog: {
+    activityMeta: {
+      label: string;
+      fillColor: string;
+    }[];
+    rows: EmployeeDataInterface[];
+  };
+}
+
 export const employeesReducer = (
   state: EmployeesState | null,
   action: EmployeesReducerAction
 ) => {
-  const getAllEmployeesFn = (data: any) => {
-    let employees: any = [];
-    data?.AuthorWorklog?.rows?.forEach((row: any) => employees.push(row.name));
+  const getAllEmployeesFn = (data: AllEmployeeInterface) => {
+    let employees: string[] = [];
+    data?.AuthorWorklog?.rows?.forEach((row: EmployeeDataInterface) =>
+      employees.push(row.name)
+    );
     return { ...state, allEmployees: employees, currentEmployeeDetails: [] };
   };
-  const employeeClickedFn = (employeeData: any) => {
+  const employeeClickedFn = (employeeData: EmployeeDataInterface) => {
     return {
       ...state,
       currentEmployeeDetails: {
         activeDays: employeeData.activeDays.days,
         isBurnOut: employeeData.activeDays.isBurnOut,
         totalActivity: employeeData.totalActivity,
-        dayWiseActivity: employeeData.dayWiseActivity
+        dayWiseActivity: employeeData.dayWiseActivity,
       },
     };
   };
