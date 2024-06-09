@@ -13,3 +13,12 @@
         height: 50%;
     }
 }
+@media screen and (max-width: 600px) {
+    .piechart_container{
+        width: 87%;
+        .piechart{
+            width: 100%;
+            height: 50%;
+        }
+    }
+}

@@ -1,4 +1,4 @@
-.SelectEmployeeBanner_container{
+.selectEmployeeBanner_container{
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -7,7 +7,25 @@
     width: 80%;
     background-color: white;
 
-    .SelectEmployeeBanner_text{
+    .selectEmployeeBanner_text{
         font-size: 2rem;
+    }
+    .selectEmployeeBanner_image{
+        max-width: 100%;
+        height: auto;
+    }
+}
+@media screen and (max-width: 600px) {
+    .selectEmployeeBanner_container{
+        height: 100vh;
+        width: 100%;
+    }
+    .selectEmployeeBanner_image{
+        display: flex;
+        align-self: center;
+        // transform: scale(0.5);
+    }
+    .selectEmployeeBanner_text{
+        font-size: 1rem;
     }
 }

@@ -3,9 +3,9 @@ import styles from './SelectEmployeeBanner.module.scss'
 import employee from '../../images/employee.png'
 const SelectEmployeeBanner = () => {
   return (
-    <div className={styles.SelectEmployeeBanner_container}>
-      <img src={employee} alt='employee'/>
-      <div className={styles.SelectEmployeeBanner_text}>Please select Developer</div>
+    <div className={styles.selectEmployeeBanner_container}>
+      <img className={styles.selectEmployeeBanner_image} src={employee} alt='employee'/>
+      <div className={styles.selectEmployeeBanner_text}>Please select Developer</div>
     </div>
   )
 }

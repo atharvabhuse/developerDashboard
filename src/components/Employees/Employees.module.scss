@@ -10,27 +10,30 @@
     font-size: 1.5rem;
     font-weight: 600;
   }
-  .employees_desc{
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    font-weight: 400;
-    color: rgb(83, 81, 81);
-  }
   .employees{
     padding: 0.5rem 1rem;
     font-size: 1rem;
     width: 99%;
-    // border-bottom: 1px solid gray;
     cursor: pointer;
   }
   .employees_selected{
     padding: 0.5rem 1rem;
     font-size: 1rem;
     width: 99%;
-    // border-bottom: 1px solid gray;
     cursor: pointer;
     background-color: rgb(215, 235, 253);
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
   }
+}
+@media screen and (max-width: 600px) {
+    .employees_container{
+        .employees_heading{
+          font-size: 1rem;
+        }
+        .employees{
+        }
+        .employees_selected{
+        }
+      }
 }

@@ -26,9 +26,26 @@
   border: 1px solid lightgray;
   border-radius: 10px;
   margin: 0.5rem;
-  width: 100%;
+  width: 95.5%;
   background-color: white;
+}
 
+@media screen and (max-width: 600px) {
+  .App_left{
+    width: 100%;
+  }
+  .App_content{
+    display: flex;
+    flex-direction: column;
+  }
+  .App_middle{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .App_right{
+    width: 100%;
+  }
 }
 
 .App-logo {

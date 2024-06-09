@@ -9,3 +9,14 @@
         font-weight: 600;
     }
 }
+@media screen and (max-width: 600px) {
+    .header_container{
+        width: 91.5%;
+        justify-content: center;
+
+    .header_text{
+        font-size: 1rem;
+        font-weight: 600;
+    }
+}
+}
